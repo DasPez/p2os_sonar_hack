@@ -439,6 +439,9 @@ void SIP::ParseStandard(unsigned char * buffer)
       sonarreadings = maxSonars;
     }
 
+    // clear the array to prevent duplicate sonar ranges
+    memset(sonars, 0, sonarreadings*sizeof(uint16_t));
+
     // update the sonar readings array with the new readings
     for (unsigned char i = 0; i < numSonars; i++) {
       sonars[buffer[cnt]] = static_cast<uint16_t>(
